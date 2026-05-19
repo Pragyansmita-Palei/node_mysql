@@ -1,0 +1,28 @@
+//users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    userName VARCHAR(191) NOT NULL,
+
+    email VARCHAR(191) NOT NULL UNIQUE,
+
+    password VARCHAR(255) NOT NULL,
+
+    address JSON,
+
+    phone VARCHAR(20) NOT NULL,
+
+    usertype ENUM('client', 'admin', 'vendor', 'driver')
+    NOT NULL DEFAULT 'client',
+
+    profile VARCHAR(500) DEFAULT 'https://stock.adobe.com/images/user-icon-in-flat-style-person-icon-user-icon-for-web-site-user-icon-vector-illustration/229758328',
+
+    answer VARCHAR(255) NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+);
+
+//
