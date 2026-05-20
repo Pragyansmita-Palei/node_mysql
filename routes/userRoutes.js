@@ -13,5 +13,5 @@ router.post("/resetpassword",authMiddleware,resetPasswordController);
 // UPDATE PASSWORD
 router.post("/updatepassword",authMiddleware,updatePasswordController);
 //delete account
-router.post("/deleteUser/:id",authMiddleware,deleteProfileController)
+router.delete("/deleteUser/:id",authMiddleware,deleteProfileController)
 export default router;
