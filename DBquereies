@@ -59,3 +59,45 @@ CREATE TABLE restaurants (
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+//category
+
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    imageUrl VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    ON UPDATE CURRENT_TIMESTAMP
+);
+
+//food
+
+CREATE TABLE foods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    title VARCHAR(255) NOT NULL,
+
+    description TEXT NOT NULL,
+
+    price DECIMAL(10,2) NOT NULL,
+
+    imgUrl VARCHAR(500) DEFAULT 'https://stock.adobe.com/images/user-icon-in-flat-style-person-icon-user-icon-for-web-site-user-icon-vector-illustration/229758328',
+
+    foodTags VARCHAR(255),
+
+    category VARCHAR(255),
+
+    code VARCHAR(100),
+
+    isAvailable BOOLEAN DEFAULT TRUE,
+
+    resturant_id INT,
+
+    rating DECIMAL(2,1) DEFAULT 5.0,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+    ON UPDATE CURRENT_TIMESTAMP
+);
