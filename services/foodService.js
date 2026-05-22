@@ -114,3 +114,9 @@ export const deleteFoodService = async(id) =>{
   );
   return result;
 };
+
+//placeorder
+
+export const placeOrderService = async()=>{
+
+};

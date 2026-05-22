@@ -136,3 +136,15 @@ export const deleteFoodController = async(req,res) =>{
         })
     }
 };
+
+//place order
+export const placeOrderController = async() =>{
+    try{
+
+    }catch(error){
+        console.log(error).send({
+            success:false,
+            message:"error in placeorder api"
+        })
+    }
+}
