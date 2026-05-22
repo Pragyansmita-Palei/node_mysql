@@ -101,3 +101,26 @@ CREATE TABLE foods (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
     ON UPDATE CURRENT_TIMESTAMP
 );
+
+//oder
+
+CREATE TABLE orders (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+
+    foods JSON NOT NULL,
+
+    payment JSON DEFAULT NULL,
+
+    buyer INT NOT NULL,
+
+    status ENUM('preparing', 'prepare', 'on the way', 'delivered')
+    DEFAULT 'preparing',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (buyer) REFERENCES users(id)
+    ON DELETE CASCADE
+);
