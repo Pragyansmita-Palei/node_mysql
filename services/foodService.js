@@ -117,6 +117,33 @@ export const deleteFoodService = async(id) =>{
 
 //placeorder
 
-export const placeOrderService = async()=>{
+export const placeOrderService = async (data) => {
+  const { cart, payment, buyer } = data;
 
+  let total = 0;
+
+  cart.forEach((item) => {
+    total += item.price;
+  });
+
+  const [result] = await mysqlpool.query(
+    `INSERT INTO orders (foods, payment, buyer)
+     VALUES (?, ?, ?)`,
+    [
+      JSON.stringify(cart),
+      JSON.stringify(payment),
+      buyer,
+    ]
+  );
+
+  return result;
+};
+
+//order status
+
+export const orderStatusService = async(id,status) =>{
+  const [result] = await mysqlpool.query(
+    "UPDATE orders SET status=? WHERE id=?",[status,id]
+  );
+  return result;
 };

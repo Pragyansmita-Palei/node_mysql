@@ -1,4 +1,4 @@
-import { createFoodSerice, deleteFoodService, getallFoodService, getFoodByIdService, getFoodByResturantIdService, updateFoodService } from "../services/foodService.js"
+import { createFoodSerice, deleteFoodService, getallFoodService, getFoodByIdService, getFoodByResturantIdService, orderStatusService, placeOrderService, updateFoodService } from "../services/foodService.js"
 
 //create
 export const createFoodController = async(req,res)=>{
@@ -138,13 +138,41 @@ export const deleteFoodController = async(req,res) =>{
 };
 
 //place order
-export const placeOrderController = async() =>{
+export const placeOrderController = async(req,res) =>{
     try{
-
+    const result = await placeOrderService(req.body);
+     res.status(201).send({
+        success:true,
+        message:"order placed successfully",
+        data:result,
+     });
     }catch(error){
-        console.log(error).send({
+        console.log(error);
+        res.status(500).send({
             success:false,
             message:"error in placeorder api"
         })
     }
-}
+};
+
+//order status
+
+export const orderStatusController = async(req,res) =>{
+    try{
+      const{id} = req.params;
+      const {status} = req.body;
+
+      const result = await orderStatusService(id,status);
+      res.status(200).send({
+        success:false,
+        message:"order status updated successfully",
+        data:result,
+      });
+    }catch(error){
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:"error in order status api"
+        })
+    }
+};
